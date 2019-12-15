@@ -1,9 +1,6 @@
 package Models;
 import javafx.util.Pair;
 
-import javax.activation.DataSource;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +42,9 @@ public class MyModel implements Model {
         try {
             final String user = "root";
             final String password = "ay28ed99";
-            this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?useSSL=false", user, password);
+            this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
             // create statement to execute queries
-            Statement stmt = this.myConn.createStatement();
+            this.stmt = this.myConn.createStatement();
         } catch(Exception e) {
             e.printStackTrace();
         }

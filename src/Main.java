@@ -3,6 +3,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import Models.MyModel;
+import javafx.util.Pair;
+import java.util.List;
 
 public class Main extends Application {
     public final int screenWidth = 600;
@@ -15,8 +17,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Connect the database
-        MyModel.getInstance().connect();
-
+        MyModel m = MyModel.getInstance();
+        m.connect();
+        List<Pair<String, String>> list = m.getCardsData("easy", 0);
+        for (Pair<String, String> stringStringPair : list) {
+            System.out.println(stringStringPair.toString());
+        }
         //כל מה שפה מתחת זה דברים שראיתי שבת דודה שלי עשתה נצטרך ליצור קבצים בהתאם כמובן ולשנות שמות אם צריך (שיניתי כבר חלק)
 
         // need to create main page (create Views/mainView.fxml)
