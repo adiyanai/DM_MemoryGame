@@ -45,4 +45,10 @@ public class Main extends Application {
         // כנראה ליצור מסמך של הנראות של העמוד הראשי שלנו כדאי לראות אצל בת דודה שלי מה יש במסמך הזה
         //scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
     }
+
+    @Override
+    public void stop() throws Exception {
+        this.m.close();
+        super.stop();
+    }
 }

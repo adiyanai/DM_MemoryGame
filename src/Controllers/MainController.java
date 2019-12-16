@@ -22,7 +22,7 @@ public class MainController {
     private Pane topPane;
 
     @FXML
-    private Button scoreTableButton;
+    private Button highscoreButton;
 
     @FXML
     private Button startButton;
