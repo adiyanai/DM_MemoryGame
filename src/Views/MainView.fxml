@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="mainPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#pressExit" text="X" fx:id="xButton">
+               <VBox.margin>
+                  <Insets right="575.0" />
+               </VBox.margin></Button>
+            <Label text="Memory Game:" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.928947389125824" green="0.9030572772026062" blue="0.4111452102661133" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.18013698630136982">
+                           <color>
+                              <Color red="0.928947389125824" green="0.9030572772026062" blue="0.4111452102661133" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.45061696120464295">
+                           <color>
+                              <Color red="0.40671053528785706" green="0.7815789580345154" blue="0.6003925204277039" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.7526717557251906">
+                           <color>
+                              <Color red="0.542900025844574" green="0.7395899891853333" blue="0.8899999856948853" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.6812731623649597" green="0.5365740656852722" blue="0.949999988079071" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Button id="startButton" fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#pressStart" prefWidth="100.0" text="Start">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button id="scoreButton" fx:id="scoreTableButton" mnemonicParsing="false" text="Score Table">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#pressExit" text="Exit">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children></VBox>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

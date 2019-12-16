@@ -58,7 +58,7 @@ public class MyModel implements Model {
             this.stmt.close();
             this.myConn.close();
         } catch (SQLException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
         System.out.println("Database closing...");
     }

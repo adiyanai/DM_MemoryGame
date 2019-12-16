@@ -1,40 +1,48 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import Models.MyModel;
 import javafx.util.Pair;
+
+import java.io.IOException;
 import java.util.List;
 
 public class Main extends Application {
+    Stage window;
+    MyModel m;
+
     public final int screenWidth = 600;
-    public final int screenHeight = 600;
+    public final int screenHeight = 400;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         // Connect the database
-        MyModel m = MyModel.getInstance();
-        m.connect();
-        List<Pair<String, String>> list = m.getCardsData("easy", 0);
+        this.m = MyModel.getInstance();
+        this.m.connect();
+        /*List<Pair<String, String>> list = m.getCardsData("easy", 0);
         for (Pair<String, String> stringStringPair : list) {
             System.out.println(stringStringPair.toString());
-        }
-        //כל מה שפה מתחת זה דברים שראיתי שבת דודה שלי עשתה נצטרך ליצור קבצים בהתאם כמובן ולשנות שמות אם צריך (שיניתי כבר חלק)
+        }*/
 
-        // need to create main page (create Views/mainView.fxml)
-        //Parent mainView;
-        //Scene scene = new Scene(mainView, screenWidth, screenHeight);
+        this.window = primaryStage;
+        this.window.setTitle("Memory Game");
+        // main page
+        Parent root = FXMLLoader.load(getClass().getResource("Views/MainView.fxml"));
+        Scene scene = new Scene(root, screenWidth, screenHeight);
+        this.window.setMinWidth(scene.getWidth());
+        this.window.setMinHeight(scene.getHeight());
+        this.window.setResizable(false);
+        this.window.setScene(scene);
+        this.window.show();
+
         // כנראה ליצור מסמך של הנראות של העמוד הראשי שלנו כדאי לראות אצל בת דודה שלי מה יש במסמך הזה
         //scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
-        //primaryStage.setResizable(false);
-        //primaryStage.setTitle("Memory Game");
-        //primaryStage.setMinWidth(scene.getWidth());
-        //primaryStage.setMinHeight(scene.getHeight());
-        //primaryStage.setScene(scene);
-        //primaryStage.show();
     }
 }
