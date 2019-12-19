@@ -30,7 +30,6 @@ public class Main extends Application {
         for (Pair<String, String> stringStringPair : list) {
             System.out.println(stringStringPair.toString());
         }*/
-
         this.window = primaryStage;
         this.window.setTitle("Memory Game");
         // main page
