@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.geometry.Insets?>
-<GridPane fx:id="levelDifficultyPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LevelDifficultyView">
+<GridPane fx:id="levelDifficultyPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LevelDifficultyController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -21,7 +16,7 @@
     <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
         <Label text="Choose Level Difficulty:">
             <font>
-                <Font name="System Italic" size="36.0" />
+                <Font name="System Bold Italic" size="36.0" />
             </font>
             <textFill>
                 <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -48,7 +43,7 @@
                 <Insets top="25.0" />
             </VBox.margin>
         </Label>
-        <Button fx:id="easyButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Easy">
+        <Button fx:id="easy" mnemonicParsing="false" onAction="#startTheGame" prefHeight="45.0" prefWidth="140.0" text="Easy">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -56,7 +51,7 @@
                 <Insets top="40.0" />
             </VBox.margin>
         </Button>
-        <Button fx:id="mediumButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Medium">
+        <Button fx:id="medium" mnemonicParsing="false" onAction="#startTheGame" prefHeight="45.0" prefWidth="140.0" text="Medium">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -64,7 +59,7 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </Button>
-        <Button fx:id="hardButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Hard">
+        <Button fx:id="hard" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Hard">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>

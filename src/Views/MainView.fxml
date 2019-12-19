@@ -10,10 +10,6 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#pressExit" text="X" fx:id="xButton">
-               <VBox.margin>
-                  <Insets right="575.0" />
-               </VBox.margin></Button>
             <Label text="Memory Game:" textAlignment="JUSTIFY">
                <font>
                   <Font name="System Bold" size="48.0" />
@@ -53,19 +49,19 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Button id="startButton" fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#pressStart" prefWidth="100.0" text="Start">
+            <Button id="startButton" fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#pressStart" prefWidth="120.0" text="Start">
                <VBox.margin>
-                  <Insets top="60.0" />
+                  <Insets top="40.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="25.0" />
                </font></Button>
-            <Button id="scoreButton" fx:id="highscoreButton" mnemonicParsing="false" text="Highscore">
+            <Button id="scoreButton" fx:id="highscoreButton" mnemonicParsing="false" prefWidth="100.0" text="Highscore">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Button>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#pressExit" text="Exit">
@@ -73,7 +69,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children></VBox>

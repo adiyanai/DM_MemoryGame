@@ -26,7 +26,7 @@ public class Main extends Application {
         // Connect the database
         this.m = MyModel.getInstance();
         this.m.connect();
-        /*List<Pair<String, String>> list = m.getCardsData("easy", 0);
+        /*List<Pair<String, String>> list = m.getCardsData();
         for (Pair<String, String> stringStringPair : list) {
             System.out.println(stringStringPair.toString());
         }*/

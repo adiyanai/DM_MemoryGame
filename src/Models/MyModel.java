@@ -8,6 +8,8 @@ import java.util.List;
 public class MyModel implements Model {
 
     private Statement stmt;
+    private int levelMode;
+    private String levelDifficulty;
     private Connection myConn;
     private List<String> easyQueries;
     private List<String> mediumQueries;
@@ -31,36 +33,9 @@ public class MyModel implements Model {
         this.mediumQueries = new ArrayList<>();
         // queries for the hard levels
         this.hardQueries = new ArrayList<>();
+        this.levelDifficulty = "easy";
+        this.levelMode = 0;
         initializeQueries();
-    }
-
-    /**
-     * connect to mySQL
-     */
-    public void connect() {
-        System.out.println("Database connecting...");
-        try {
-            final String user = "root";
-            final String password = "ay28ed99";
-            this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
-            // create statement to execute queries
-            this.stmt = this.myConn.createStatement();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * close connection
-     */
-    public void close() {
-        try {
-            this.stmt.close();
-            this.myConn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Database closing...");
     }
 
     /**
@@ -123,26 +98,69 @@ public class MyModel implements Model {
     }
 
     /**
+     * set the level mode
+     * @param m - level mode (0 = artist - song, 1 = song - album, 2 = artist - album)
+     */
+    public void setLevelMode(int m) {
+        this.levelMode = m;
+    }
+
+    /**
+     * set the level difficulty
+     * @param d - level difficulty (easy, medium or hard)
+     */
+    public void setLevelDifficulty(String d) {
+        this.levelDifficulty = d;
+    }
+
+    /**
+     * connect to mySQL
+     */
+    public void connect() {
+        System.out.println("Database connecting...");
+        try {
+            final String user = "root";
+            final String password = "ay28ed99";
+            this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
+            // create statement to execute queries
+            this.stmt = this.myConn.createStatement();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * close connection
+     */
+    public void close() {
+        try {
+            this.stmt.close();
+            this.myConn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Database closing...");
+    }
+
+    /**
      * Create and return pairs of cards of the game
-     * @param levelDifficulty - the level difficulty: easy, medium or hard
-     * @param levelType - the level type: 0 (artist - song), 1 (song - album) or 2 (artist - album)
      * @return pairs of cards of the game
      */
-    public List<Pair<String, String>> getCardsData(String levelDifficulty, int levelType) {
+    public List<Pair<String, String>> getCardsData() {
         List<Pair<String, String>> cards = new ArrayList<>();
         String query;
         ResultSet rs;
-        switch (levelDifficulty) {
+        switch (this.levelDifficulty) {
             case "easy": {
-                query = this.easyQueries.get(levelType);
+                query = this.easyQueries.get(this.levelMode);
                 break;
             }
             case "medium": {
-                query = this.mediumQueries.get(levelType);
+                query = this.mediumQueries.get(this.levelMode);
                 break;
             }
             case "hard": {
-                query = this.hardQueries.get(levelType);
+                query = this.hardQueries.get(this.levelMode);
                 break;
             }
             default:
@@ -152,7 +170,7 @@ public class MyModel implements Model {
         try {
             rs = this.stmt.executeQuery(query);
             while (rs.next()) {
-                cards.add(getPairOfCards(rs, levelType));
+                cards.add(getPairOfCards(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,15 +182,14 @@ public class MyModel implements Model {
     /**
      * Create and return pair of cards
      * @param rs - raw in the table
-     * @param levelType - the level type: 0 (artist - song), 1 (song - album) or 2 (artist - album)
      * @return pair of cards
      * @throws SQLException - throw sql exception
      */
-    public Pair<String, String> getPairOfCards(ResultSet rs, int levelType) throws SQLException {
+    public Pair<String, String> getPairOfCards(ResultSet rs) throws SQLException {
         Pair<String, String> cardsPair;
         String card1, card2;
 
-        switch (levelType) {
+        switch (this.levelMode) {
             case 0:
                 card1 = rs.getString("ArtistName");
                 card2 = rs.getString("Title");
@@ -186,7 +203,7 @@ public class MyModel implements Model {
                 card2 = rs.getString("AlbumName");
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + levelType);
+                throw new IllegalStateException("Unexpected value: " + this.levelMode);
         }
 
         cardsPair = new Pair<>(card1, card2);

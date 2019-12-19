@@ -16,7 +16,7 @@
    <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
       <Label text="Choose Game Mode:">
          <font>
-            <Font name="System Italic" size="36.0" />
+            <Font name="System Bold Italic" size="36.0" />
          </font>
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
