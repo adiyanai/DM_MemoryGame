@@ -37,6 +37,21 @@ public class GameModeController {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/LevelDifficultyView.fxml"));
         Scene scene = new Scene(gameModePage);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
         window.setScene(scene);
+    }
+
+    public void pressBack(ActionEvent event) throws IOException {
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent mainView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/MainView.fxml"));
+        Scene scene = new Scene(mainView);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        window.setScene(scene);
+    }
+
+    public void pressExit(ActionEvent event) {
+        MyModel.getInstance().close();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

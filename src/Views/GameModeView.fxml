@@ -43,7 +43,7 @@
             <Insets top="25.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="artistSong" mnemonicParsing="false" onAction="#levelDifficultyPage" prefHeight="45.0" prefWidth="140.0" text="Artist-Song">
+      <Button fx:id="artistSong" mnemonicParsing="false" onAction="#levelDifficultyPage" prefWidth="140.0" text="Artist-Song">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -51,7 +51,7 @@
             <Insets top="40.0" />
          </VBox.margin>
       </Button>
-      <Button fx:id="songAlbum" mnemonicParsing="false" onAction="#levelDifficultyPage" prefHeight="45.0" prefWidth="140.0" text="Song-Album">
+      <Button fx:id="songAlbum" mnemonicParsing="false" onAction="#levelDifficultyPage" prefWidth="140.0" text="Song-Album">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -59,13 +59,29 @@
             <Insets top="30.0" />
          </VBox.margin>
       </Button>
-      <Button fx:id="artistAlbum" mnemonicParsing="false" onAction="#levelDifficultyPage" prefHeight="45.0" prefWidth="140.0" text="Artist-Album">
+      <Button fx:id="artistAlbum" mnemonicParsing="false" onAction="#levelDifficultyPage" prefWidth="140.0" text="Artist-Album">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>
+      </Button>
+      <Button id="prevWindowButton" fx:id="prevWindowButton" mnemonicParsing="false" onAction="#pressBack" prefWidth="70.0" text="Back" alignment="BOTTOM_CENTER">
+         <VBox.margin>
+            <Insets top="37" right="130" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button id="exitButton" fx:id="exit" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit" alignment="BOTTOM_CENTER">
+         <VBox.margin>
+            <Insets top="-29" left="130"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
       </Button>
    </VBox>
 </GridPane>

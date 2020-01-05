@@ -10,14 +10,36 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label text="Memory Game:" textAlignment="JUSTIFY">
+            <Label text="Memory Game" textAlignment="JUSTIFY">
                <font>
-                  <Font name="System Bold" size="48.0" />
+                  <Font name="System Bold" size="50.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
                <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.2" green="0.5" blue="0.7" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.3635731465021431">
+                           <color>
+                              <Color red="0.15" green="0.5" blue="0.65" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.9">
+                           <color>
+                              <Color red="0.9599999785423279" green="0.9599999785423279" blue="0.1" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Label>
+            <Button id="startButton" fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#pressStart" prefWidth="150.0" text="Start" >
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
                         <Stop>
@@ -47,29 +69,26 @@
                         </Stop>
                      </stops>
                   </RadialGradient>
-               </textFill>
-            </Label>
-            <Button id="startButton" fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#pressStart" prefWidth="120.0" text="Start">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="25.0" />
                </font></Button>
-            <Button id="scoreButton" fx:id="highscoreButton" mnemonicParsing="false" prefWidth="100.0" text="Highscore">
+            <Button id="scoreButton" fx:id="highScoresButton" mnemonicParsing="false" onAction="#pressHighScores" prefWidth="130.0" text="High Scores">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#pressExit" text="Exit">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children></VBox>

@@ -67,5 +67,21 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </Button>
+        <Button id="prevWindowButton" fx:id="prevWindowButton" mnemonicParsing="false" onAction="#pressBack" prefWidth="70.0" text="Back" alignment="BOTTOM_CENTER">
+            <VBox.margin>
+                <Insets top="37" right="130" />
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
+        <Button id="exitButton" fx:id="exit" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit" alignment="BOTTOM_CENTER">
+            <VBox.margin>
+                <Insets top="-29" left="130"/>
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
     </VBox>
 </GridPane>

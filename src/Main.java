@@ -35,14 +35,14 @@ public class Main extends Application {
         // main page
         Parent root = FXMLLoader.load(getClass().getResource("Views/MainView.fxml"));
         Scene scene = new Scene(root, screenWidth, screenHeight);
+
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+
         this.window.setMinWidth(scene.getWidth());
         this.window.setMinHeight(scene.getHeight());
         this.window.setResizable(false);
         this.window.setScene(scene);
         this.window.show();
-
-        // כנראה ליצור מסמך של הנראות של העמוד הראשי שלנו כדאי לראות אצל בת דודה שלי מה יש במסמך הזה
-        //scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
     }
 
     @Override

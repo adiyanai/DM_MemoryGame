@@ -22,7 +22,7 @@ public class MainController {
     private Pane topPane;
 
     @FXML
-    private Button highscoreButton;
+    private Button highScoresButton;
 
     @FXML
     private Button startButton;
@@ -41,6 +41,15 @@ public class MainController {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameModeView.fxml"));
         Scene scene = new Scene(gameModePage);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        window.setScene(scene);
+    }
+
+    public void pressHighScores(ActionEvent event) throws IOException {
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent highScoresPage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/HighScoresView.fxml"));
+        Scene scene = new Scene(highScoresPage);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
         window.setScene(scene);
     }
 

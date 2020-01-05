@@ -117,11 +117,11 @@ public class MyModel implements Model {
      * connect to mySQL
      */
     public void connect() {
-        System.out.println("Database connecting...");
         try {
             final String user = "root";
-            final String password = "ay28ed99";
+            final String password = "123456";
             this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
+            System.out.println("Database connecting...");
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();
         } catch(Exception e) {
@@ -208,5 +208,10 @@ public class MyModel implements Model {
 
         cardsPair = new Pair<>(card1, card2);
         return cardsPair;
+    }
+
+    public List<Player> getHighScores() {
+        HighScores highScores = HighScores.getInstance();
+        return highScores.loadHighScores();
     }
 }
