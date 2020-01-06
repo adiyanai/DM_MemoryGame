@@ -32,14 +32,7 @@ public class CardController implements ActionListener, MouseListener {
             case "Exit":
                 System.exit(0);
                 break;
-            case "Rules":
-                // TODO: show rules here
-                break;
-            case "Developers":
-                //TODO: show information about developers here
-                break;
         }
-
 
     }
 

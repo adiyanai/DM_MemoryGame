@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.CardModel;
-import Controllers.*;
 import Models.MyModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,11 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class MainController {
 
@@ -65,7 +62,7 @@ public class MainController {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         Parent gameBoardPage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameBoardView.fxml"));
         Scene scene = new Scene(gameBoardPage);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("BoardGame.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("GameBoard.css").toExternalForm());
         window.setScene(scene);
 
         CardModel model = new CardModel(12);

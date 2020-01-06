@@ -2,13 +2,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import Models.MyModel;
-import javafx.util.Pair;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Main extends Application {
     Stage window;
@@ -43,7 +40,7 @@ public class Main extends Application {
         Parent gameBoardRoot = FXMLLoader.load(getClass().getResource("Views/GameBoardView.fxml"));
         Scene gameBoardScene = new Scene(gameBoardRoot, screenWidth, screenHeight);
 
-        gameBoardScene.getStylesheets().add(getClass().getClassLoader().getResource("BoardGame.css").toExternalForm());
+        gameBoardScene.getStylesheets().add(getClass().getClassLoader().getResource("GameBoard.css").toExternalForm());
 
         this.window.setMinWidth(scene.getWidth());
         this.window.setMinHeight(scene.getHeight());
