@@ -60,7 +60,6 @@ public class MyModel implements Model {
         this.easyQueries.add(easySongAlbumQueries);
         this.easyQueries.add(easyArtistAlbumQueries);
 
-
         // create queries for the medium levels: (6 pairs)
         // artist - song
         String mediumArtistSongQueries = "SELECT DISTINCT ArtistName, Title FROM millionsong.artists, millionsong.albums, millionsong.albums_artists, millionsong.songs " +

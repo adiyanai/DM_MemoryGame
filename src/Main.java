@@ -38,6 +38,13 @@ public class Main extends Application {
 
         scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
 
+
+        // game board page
+        Parent gameBoardRoot = FXMLLoader.load(getClass().getResource("Views/GameBoardView.fxml"));
+        Scene gameBoardScene = new Scene(gameBoardRoot, screenWidth, screenHeight);
+
+        gameBoardScene.getStylesheets().add(getClass().getClassLoader().getResource("BoardGame.css").toExternalForm());
+
         this.window.setMinWidth(scene.getWidth());
         this.window.setMinHeight(scene.getHeight());
         this.window.setResizable(false);

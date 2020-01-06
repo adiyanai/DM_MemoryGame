@@ -1,5 +1,7 @@
 package Controllers;
 
+import Models.CardModel;
+import Controllers.*;
 import Models.MyModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,5 +59,20 @@ public class MainController {
         MyModel.getInstance().close();
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    public void gameBoard(ActionEvent event) throws IOException{
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent gameBoardPage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameBoardView.fxml"));
+        Scene scene = new Scene(gameBoardPage);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("BoardGame.css").toExternalForm());
+        window.setScene(scene);
+
+        CardModel model = new CardModel(12);
+        CardController controller = new CardController(model);
+        GameBoardController gameBoardController = new GameBoardController(model, controller);
+        model.setView(gameBoardController);
+        controller.setView(gameBoardController);
+        gameBoardController.newGame();
     }
 }
