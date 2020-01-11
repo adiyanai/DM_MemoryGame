@@ -9,9 +9,9 @@ public class MyModel implements Model {
 
     private Statement stmt;
     private int levelMode;
-    private String highScoreType;
     private String levelDifficulty;
     private Connection myConn;
+    private String playerName1;
     private List<String> easyQueries;
     private List<String> mediumQueries;
     private List<String> hardQueries;
@@ -37,6 +37,7 @@ public class MyModel implements Model {
         this.hardQueries = new ArrayList<>();
         this.levelDifficulty = "easy";
         this.levelMode = 0;
+        this.playerName1 = "";
         initializeQueries();
     }
 
@@ -383,12 +384,25 @@ public class MyModel implements Model {
     }
 
     /**
+     * @return the player name
+     */
+    public String getPlayerName(){return this.playerName1;}
+
+    /**
+     * set the player name
+     * @param name - player name
+     */
+    public void setPlayerName(String name) {
+        this.playerName1 = name;
+    }
+
+    /**
      * connect to mySQL
      */
     public void connect() {
         try {
             final String user = "root";
-            final String password = "123456";
+            final String password = "318506615";
             this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();
@@ -487,7 +501,7 @@ public class MyModel implements Model {
     }
 
     public void addToHighScores() {
-        String playerName = "";
+        String playerName = playerName1;
         HighScoresTable.getInstance();
         HighScoresTable.addToHighScores(playerName, gameEndingTime);
     }

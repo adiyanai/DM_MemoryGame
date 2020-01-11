@@ -8,8 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.paint.*;
 
 import java.io.IOException;
 

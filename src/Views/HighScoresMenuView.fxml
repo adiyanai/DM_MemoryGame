@@ -43,7 +43,8 @@
                 <Insets top="25.0" />
             </VBox.margin>
         </Label>
-        <Button fx:id="easy" mnemonicParsing="false" onAction="#highScoresPage" prefHeight="45.0" prefWidth="140.0" text="Easy">
+
+        <Button fx:id="easy" mnemonicParsing="false" onAction="#highScoresPage" prefWidth="140.0" text="easy">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -51,7 +52,7 @@
                 <Insets top="40.0" />
             </VBox.margin>
         </Button>
-        <Button fx:id="medium" mnemonicParsing="false" onAction="#highScoresPage" prefHeight="45.0" prefWidth="140.0" text="Medium">
+        <Button fx:id="medium" mnemonicParsing="false" onAction="#highScoresPage" prefWidth="140.0" text="medium">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -59,7 +60,7 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </Button>
-        <Button fx:id="hard" mnemonicParsing="false" onAction="#highScoresPage" prefHeight="45.0" prefWidth="140.0" text="Hard">
+        <Button fx:id="hard" mnemonicParsing="false" onAction="#highScoresPage" prefWidth="140.0" text="hard">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -67,6 +68,7 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </Button>
+
         <Button id="MainMenuWindowButton" fx:id="prevWindowButton" mnemonicParsing="false" onAction="#pressMainMenu" prefWidth="120.0" text="Main Menu" alignment="BOTTOM_CENTER">
             <VBox.margin>
                 <Insets top="37" right="130" />

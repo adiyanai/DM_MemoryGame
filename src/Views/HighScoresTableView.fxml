@@ -61,17 +61,17 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </TableView>
-        <Button id="prevWindowButton" fx:id="prevWindowButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#pressBack" prefWidth="70.0" text="Back">
+        <Button id="prevWindowButton" fx:id="prevWindowButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#pressBack" text="Back">
             <VBox.margin>
-                <Insets left="-130.0" right="70.0" top="-29.0" />
+                <Insets right="130" top="37" />
             </VBox.margin>
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Button>
-        <Button id="exitButton" fx:id="exit" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit">
+        <Button id="exitButton" fx:id="exit" alignment="BOTTOM_CENTER" maxHeight="-Infinity" mnemonicParsing="false" onAction="#pressExit" prefHeight="29.0" prefWidth="70.0" text="Exit">
             <VBox.margin>
-                <Insets left="130.0" top="-29.0" />
+                <Insets left="130.0" top="-30.0" />
             </VBox.margin>
             <font>
                 <Font name="System Bold" size="16.0" />
