@@ -105,7 +105,8 @@ public class MyModel implements Model {
                 "\n" +
                 "Select distinct Title, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
-                "Where (Average_Years > 2004 or Count_songs >=4) and length(Title)<20 and length(AlbumName)<20\n" +
+                "Where (Average_Years > 2004 or Count_songs >=4) and length(Title)<20 and length(AlbumName)<20" +
+                " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 4;";
         // artist - album
         String easyArtistAlbumQueries = "With Artists_info As(\n" +
@@ -172,7 +173,8 @@ public class MyModel implements Model {
                 "\n" +
                 "Select distinct Artists_info.ArtistName, Title From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
-                "Where (Average_Years < 2002 or Count_songs < 3) and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
+                "Where (Average_Years < 2002 or Count_songs < 3) " +
+                "and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
                 "ORDER BY RAND() LIMIT 5;";
         // song - album
         String mediumSongAlbumQueries = "With Artists_info As(\n" +
@@ -203,7 +205,8 @@ public class MyModel implements Model {
                 "\n" +
                 "Select distinct  Title, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
-                "Where (Average_Years < 2002 or Count_songs < 3) and length(Title)<20\n" +
+                "Where (Average_Years < 2002 or Count_songs < 3) and length(Title)<20" +
+                " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 5;";
         // artist - album
         String mediumArtistAlbumQueries = "With Artists_info As(\n" +
@@ -302,7 +305,8 @@ public class MyModel implements Model {
                 "\n" +
                 "Select distinct Title, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
-                "Where (Average_Years < 2000 and Count_songs <= 2) and length(Title)<20 and length(AlbumName)<20\n" +
+                "Where (Average_Years < 2000 and Count_songs <= 2) and length(Title)<20 and length(AlbumName)<20" +
+                " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 6;";
         // artist - album
         String hardArtistAlbumQueries = "With Artists_info As(\n" +

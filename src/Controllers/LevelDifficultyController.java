@@ -12,13 +12,12 @@ import javafx.scene.*;
 import javafx.scene.paint.*;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class LevelDifficultyController {
 
     private MyModel m;
 
-    public void startTheGame(ActionEvent event) {
+    public void startTheGame(ActionEvent event) throws IOException {
 
         m = MyModel.getInstance();
         String difficulty = ((Button)event.getSource()).getId();
@@ -30,9 +29,9 @@ public class LevelDifficultyController {
 
     public void pressBack(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent mainView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/GameModeView.fxml")));
+        Parent mainView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameModeView.fxml"));
         Scene scene = new Scene(mainView);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
         window.setScene(scene);
     }
 
