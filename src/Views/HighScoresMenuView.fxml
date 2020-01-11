@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="mainHighScoresPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainHighScoresController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
+        <Label text="Choose High Score Table:">
+            <font>
+                <Font name="System Bold Italic" size="36.0" />
+            </font>
+            <textFill>
+                <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.12164229899644852" green="0.48238426446914673" blue="0.6026315689086914" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.3635731465021431">
+                            <color>
+                                <Color red="0.12164229899644852" green="0.48238426446914673" blue="0.6026315689086914" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.9599999785423279" green="0.9599999785423279" blue="0.14399999380111694" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </textFill>
+            <VBox.margin>
+                <Insets top="25.0" />
+            </VBox.margin>
+        </Label>
+        <Button fx:id="easy" mnemonicParsing="false" onAction="#highScoresPage" prefHeight="45.0" prefWidth="140.0" text="Easy">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="40.0" />
+            </VBox.margin>
+        </Button>
+        <Button fx:id="medium" mnemonicParsing="false" onAction="#highScoresPage" prefHeight="45.0" prefWidth="140.0" text="Medium">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="30.0" />
+            </VBox.margin>
+        </Button>
+        <Button fx:id="hard" mnemonicParsing="false" onAction="#highScoresPage" prefHeight="45.0" prefWidth="140.0" text="Hard">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="30.0" />
+            </VBox.margin>
+        </Button>
+        <Button id="MainMenuWindowButton" fx:id="prevWindowButton" mnemonicParsing="false" onAction="#pressMainMenu" prefWidth="120.0" text="Main Menu" alignment="BOTTOM_CENTER">
+            <VBox.margin>
+                <Insets top="37" right="130" />
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
+        <Button id="exitButton" fx:id="exit" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit" alignment="BOTTOM_CENTER">
+            <VBox.margin>
+                <Insets top="-29" left="130"/>
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
+    </VBox>
+</GridPane>
