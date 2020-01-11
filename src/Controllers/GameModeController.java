@@ -7,9 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.Objects;
 
 public class GameModeController {
 
@@ -35,17 +35,17 @@ public class GameModeController {
                 throw new IllegalStateException("Unexpected value: " + mode);
         }
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/LevelDifficultyView.fxml"));
+        Parent gameModePage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/LevelDifficultyView.fxml")));
         Scene scene = new Scene(gameModePage);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
     }
 
     public void pressBack(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent mainView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/MainView.fxml"));
+        Parent mainView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/PlayerNameView.fxml")));
         Scene scene = new Scene(mainView);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
     }
 

@@ -1,9 +1,7 @@
 package Controllers;
 
-import Models.HighScores;
 import Models.MyModel;
 import Models.Player;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,18 +15,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
-
-public class HighScoresController implements Initializable {
+public class HighScoresTableController implements Initializable {
 
     private MyModel m;
 
@@ -48,7 +43,9 @@ public class HighScoresController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         m = MyModel.getInstance();
+
         highScores = m.getHighScores();
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -61,7 +58,6 @@ public class HighScoresController implements Initializable {
 
     }
 
-
     public void findenig()
     {
 
@@ -69,9 +65,9 @@ public class HighScoresController implements Initializable {
 
     public void pressBack(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent mainView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/MainView.fxml"));
+        Parent mainView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/MainView.fxml")));
         Scene scene = new Scene(mainView);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
     }
 

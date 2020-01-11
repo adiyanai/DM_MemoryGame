@@ -9,12 +9,14 @@ public class MyModel implements Model {
 
     private Statement stmt;
     private int levelMode;
+    private String highScoreType;
     private String levelDifficulty;
     private Connection myConn;
     private List<String> easyQueries;
     private List<String> mediumQueries;
     private List<String> hardQueries;
     private static MyModel instance = null;
+    private String gameEndingTime;
 
     public static MyModel getInstance() {
         if (instance == null) {
@@ -44,53 +46,295 @@ public class MyModel implements Model {
     public void initializeQueries() {
         // create queries for the easy levels: (4 pairs)
         // artist - song
-        String easyArtistSongQueries = "SELECT DISTINCT ArtistName, Title FROM millionsong.artists, millionsong.albums, millionsong.albums_artists, millionsong.songs " +
-                "WHERE albums.AlbumID = albums_artists.AlbumID AND artists.ArtistID = albums_artists.ArtistID AND albums.AlbumID = songs.AlbumID " +
+        String easyArtistSongQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct Artists_info.ArtistName,Title From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years > 2004 or Count_songs>= 4) and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
                 "ORDER BY RAND() LIMIT 4;";
         // song - album
-        String easySongAlbumQueries = "SELECT DISTINCT Title, AlbumName FROM millionsong.songs, millionsong.albums " +
-                "WHERE songs.AlbumID = albums.AlbumID " +
+        String easySongAlbumQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct Title, AlbumName From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years > 2004 or Count_songs >=4) and length(Title)<20 and length(AlbumName)<20\n" +
                 "ORDER BY RAND() LIMIT 4;";
         // artist - album
-        String easyArtistAlbumQueries = "SELECT DISTINCT ArtistName, AlbumName FROM millionsong.artists, millionsong.albums, millionsong.albums_artists " +
-                "WHERE albums.AlbumID = albums_artists.AlbumID AND artists.ArtistID = albums_artists.ArtistID " +
+        String easyArtistAlbumQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct Artists_info.ArtistName, AlbumName From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years > 2004 or Count_songs>= 4) and length(Artists_info.ArtistName)<20 and length(AlbumName)<20\n" +
                 "ORDER BY RAND() LIMIT 4;";
-        // song - year/decade
         this.easyQueries.add(easyArtistSongQueries);
         this.easyQueries.add(easySongAlbumQueries);
         this.easyQueries.add(easyArtistAlbumQueries);
 
-        // create queries for the medium levels: (6 pairs)
+        // create queries for the medium levels: (5 pairs)
         // artist - song
-        String mediumArtistSongQueries = "SELECT DISTINCT ArtistName, Title FROM millionsong.artists, millionsong.albums, millionsong.albums_artists, millionsong.songs " +
-                "WHERE albums.AlbumID = albums_artists.AlbumID AND artists.ArtistID = albums_artists.ArtistID AND albums.AlbumID = songs.AlbumID " +
-                "ORDER BY RAND() LIMIT 6;";
+        String mediumArtistSongQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct Artists_info.ArtistName, Title From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years < 2002 or Count_songs < 3) and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
+                "ORDER BY RAND() LIMIT 5;";
         // song - album
-        String mediumSongAlbumQueries = "SELECT DISTINCT Title, AlbumName FROM millionsong.songs, millionsong.albums " +
-                "WHERE songs.AlbumID = albums.AlbumID " +
-                "ORDER BY RAND() LIMIT 6;";
+        String mediumSongAlbumQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct  Title, AlbumName From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years < 2002 or Count_songs < 3) and length(Title)<20\n" +
+                "ORDER BY RAND() LIMIT 5;";
         // artist - album
-        String mediumArtistAlbumQueries = "SELECT DISTINCT ArtistName, AlbumName FROM millionsong.artists, millionsong.albums, millionsong.albums_artists " +
-                "WHERE albums.AlbumID = albums_artists.AlbumID AND artists.ArtistID = albums_artists.ArtistID " +
-                "ORDER BY RAND() LIMIT 6;";
+        String mediumArtistAlbumQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct  Artists_info.ArtistName, AlbumName From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years < 2002 or Count_songs < 3) and length(Artists_info.ArtistName)<20 and length(AlbumName)<20\n" +
+                "ORDER BY RAND() LIMIT 5;";
         this.mediumQueries.add(mediumArtistSongQueries);
         this.mediumQueries.add(mediumSongAlbumQueries);
         this.mediumQueries.add(mediumArtistAlbumQueries);
 
 
-        // create queries for the hard levels: (8 pairs)
+        // create queries for the hard levels: (6 pairs)
         // artist - song
-        String hardArtistSongQueries = "SELECT DISTINCT ArtistName, Title FROM millionsong.artists, millionsong.albums, millionsong.albums_artists, millionsong.songs " +
-                "WHERE albums.AlbumID = albums_artists.AlbumID AND artists.ArtistID = albums_artists.ArtistID AND albums.AlbumID = songs.AlbumID " +
-                "ORDER BY RAND() LIMIT 8;";
+        String hardArtistSongQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct  Artists_info.ArtistName, Title From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years < 2000 and Count_songs <= 2) and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
+                "ORDER BY RAND() LIMIT 6;";
         // song - album
-        String hardSongAlbumQueries = "SELECT DISTINCT Title, AlbumName FROM millionsong.songs, millionsong.albums " +
-                "WHERE songs.AlbumID = albums.AlbumID " +
-                "ORDER BY RAND() LIMIT 8;";
+        String hardSongAlbumQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct Title, AlbumName From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years < 2000 and Count_songs <= 2) and length(Title)<20 and length(AlbumName)<20\n" +
+                "ORDER BY RAND() LIMIT 6;";
         // artist - album
-        String hardArtistAlbumQueries = "SELECT DISTINCT ArtistName, AlbumName FROM millionsong.artists, millionsong.albums, millionsong.albums_artists " +
-                "WHERE albums.AlbumID = albums_artists.AlbumID AND artists.ArtistID = albums_artists.ArtistID " +
-                "ORDER BY RAND() LIMIT 8;";
+        String hardArtistAlbumQueries = "With Artists_info As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID, Title, Year,AL.AlbumName,\n" +
+                "Avg(Year) as Average_years\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName),\n" +
+                "\n" +
+                "Artists_info2 As(\n" +
+                "Select \n" +
+                "ArtistName, AR.ArtistID,\n" +
+                "count(SongID) as Count_songs\n" +
+                "From artists as AR\n" +
+                "Inner join albums_artists AA\n" +
+                "On AR.ArtistID=AA.ArtistID\n" +
+                "Inner Join albums AL\n" +
+                "On AA.AlbumID=AL.AlbumID\n" +
+                "Inner join songs S\n" +
+                "On AL.AlbumID=S.AlbumID\n" +
+                "Group By AR.ArtistID,ArtistName)\n" +
+                "\n" +
+                "Select distinct  Artists_info.ArtistName, AlbumName From Artists_info inner join Artists_info2\n" +
+                "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
+                "Where (Average_Years < 2000 and Count_songs <= 2) and length(Artists_info.ArtistName)<20 and length(AlbumName)<20\n" +
+                "ORDER BY RAND() LIMIT 6;";
         this.hardQueries.add(hardArtistSongQueries);
         this.hardQueries.add(hardSongAlbumQueries);
         this.hardQueries.add(hardArtistAlbumQueries);
@@ -105,11 +349,33 @@ public class MyModel implements Model {
     }
 
     /**
+     * @return the level mode (0 = artist - song, 1 = song - album, 2 = artist - album)
+     */
+    public int getLevelMode() {
+        return this.levelMode;
+    }
+
+    /**
      * set the level difficulty
      * @param d - level difficulty (easy, medium or hard)
      */
     public void setLevelDifficulty(String d) {
         this.levelDifficulty = d;
+    }
+
+    /**
+     * @return the level difficulty
+     */
+    public String getLevelDifficulty() {
+        return this.levelDifficulty;
+    }
+
+    /**
+     * set the highscores table type
+     * @param type- level difficulty (easy, medium or hard)
+     */
+    public void setHighScoresType(String type) {
+        HighScoresTable.getInstance().setHighScoresType(type);
     }
 
     /**
@@ -120,7 +386,6 @@ public class MyModel implements Model {
             final String user = "root";
             final String password = "123456";
             this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
-            System.out.println("Database connecting...");
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();
         } catch(Exception e) {
@@ -138,7 +403,6 @@ public class MyModel implements Model {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Database closing...");
     }
 
     /**
@@ -210,7 +474,17 @@ public class MyModel implements Model {
     }
 
     public List<Player> getHighScores() {
-        HighScores highScores = HighScores.getInstance();
-        return highScores.loadHighScores();
+        HighScoresTable.getInstance();
+        return HighScoresTable.loadHighScores();
+    }
+
+    public void setGameEndingTime(Integer endingTime) {
+        this.gameEndingTime = endingTime.toString();
+    }
+
+    public void addToHighScores() {
+        String playerName = "";
+        HighScoresTable.getInstance();
+        HighScoresTable.addToHighScores(playerName, gameEndingTime);
     }
 }

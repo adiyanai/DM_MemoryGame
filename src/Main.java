@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import Models.MyModel;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
     Stage window;
@@ -23,25 +24,12 @@ public class Main extends Application {
         // Connect the database
         this.m = MyModel.getInstance();
         this.m.connect();
-        /*List<Pair<String, String>> list = m.getCardsData();
-        for (Pair<String, String> stringStringPair : list) {
-            System.out.println(stringStringPair.toString());
-        }*/
         this.window = primaryStage;
-        this.window.setTitle("Memory Game");
+        this.window.setTitle("Perfect Matching");
         // main page
         Parent root = FXMLLoader.load(getClass().getResource("Views/MainView.fxml"));
         Scene scene = new Scene(root, screenWidth, screenHeight);
-
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
-
-
-        // game board page
-        Parent gameBoardRoot = FXMLLoader.load(getClass().getResource("Views/GameBoardView.fxml"));
-        Scene gameBoardScene = new Scene(gameBoardRoot, screenWidth, screenHeight);
-
-        gameBoardScene.getStylesheets().add(getClass().getClassLoader().getResource("GameBoard.css").toExternalForm());
-
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         this.window.setMinWidth(scene.getWidth());
         this.window.setMinHeight(scene.getHeight());
         this.window.setResizable(false);

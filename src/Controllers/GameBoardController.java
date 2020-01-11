@@ -1,144 +1,109 @@
 package Controllers;
+import Views.GamePane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.util.Pair;
+import Models.MyModel;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.scene.text.*;
+import javafx.animation.*;
+import javafx.util.Duration;
 
-import Models.Card;
-import Models.CardModel;
-import Views.SwingViewOfCards;
-import com.sun.istack.internal.NotNull;
-import javax.swing.*;
-import java.awt.*;
-import java.util.Random;
+import java.io.IOException;
+import java.util.*;
 
 public class GameBoardController {
-    private SwingViewOfCards arrayOfCards[];
-    private JFrame mainFrame;
-    private Container mainConteinerPane;
-    private ImageIcon cardIcon[]; // 0-6 front side of the card; 7 back side
-    private CardModel model;
-    private CardController controller;
-    JPanel panel;
-    ImageIcon backIcon;
 
-    public GameBoardController(CardModel model, CardController controller) {
-        this.controller = controller;
-        this.model = model;
-//      main window
-        this.mainFrame = new JFrame("Matching Game");
-        this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainFrame.setSize(800, 900);
-        this.mainConteinerPane = this.mainFrame.getContentPane();
-        this.mainConteinerPane.setLayout(new BoxLayout(this.mainConteinerPane, BoxLayout.PAGE_AXIS));
-        //Menu Bar
-        JMenuBar menuBar = new JMenuBar();
-        this.mainFrame.setJMenuBar(menuBar);
-        //Game Menu
-        JMenu gameMenu = new JMenu("Game");
-        menuBar.add(gameMenu);
-        menuBar.add(gameMenu);
-        //creation generic submenu creater
-        newMenuItem("New Game", gameMenu, controller);
-        newMenuItem("Exit", gameMenu, controller);
-        //About menu
-        JMenu aboutMenu = new JMenu("Help");
-        menuBar.add(aboutMenu);
-        newMenuItem("Rules", aboutMenu, controller);
-        newMenuItem("Developers", aboutMenu, controller);
-        //loading cards
-        this.cardIcon = loadCardIcons(model.getCountOfCards() / 2);
-        arrayOfCards = new SwingViewOfCards[model.getCountOfCards()];
-        panel = new JPanel(new GridLayout(3, 4));
-        backIcon = this.cardIcon[6];
+    private BorderPane pane = new BorderPane();
+    private MyModel m;
+    private Button btStop = new Button("Stop");
+    private Timeline timer;
+    private Integer seconds = 0;
+    private Label timeLabel;
+    private static Label levelLabel;
+    private static Integer levelNumber = 0;
+    private Label levelDifficultyLabel;
+    private Integer numOfCouples;
+
+    public GameBoardController(Stage window) {
+        m = MyModel.getInstance();
+        HBox infoBox = new HBox(20);
+        infoBox.setAlignment(Pos.CENTER);
+        levelLabel = new Label();
+        increaseLevelNumber();
+        levelDifficultyLabel = new Label();
+        setLevelDifficulty();
+        startTimer();
+        HBox.setMargin(timeLabel, new Insets(20, 20, 20, 20));
+        infoBox.getChildren().addAll(levelDifficultyLabel, levelLabel, timeLabel);
+        runTheGame(window, infoBox);
     }
 
-    private ImageIcon[] loadCardIcons(int countOfIcons) {
-        ImageIcon icon[] = new ImageIcon[countOfIcons + 1];
-        for (int i = 0; i < countOfIcons + 1; i++) {
-            String fileName = "D:/education/Java/FindAPairGame/card" + i + ".jpg";
-            icon[i] = new ImageIcon(fileName);
-        }
-        return icon;
+    private void runTheGame(Stage window, HBox infoBox) {
+        GamePane gamePane = new GamePane(this, pane, numOfCouples, window);
+        pane.setTop(infoBox);
+        pane.setCenter(gamePane);
+        Scene s = new Scene(pane);
+        window.setScene(s);
+        window.show();
     }
 
-    private void makeCards(boolean newGame) {
-        if (newGame) {
-            this.panel = new JPanel(new GridLayout(3, 4));
-            int lenghtOfCardsToAdd = model.getCountOfCards();
-            int cardsToAdd[] = new int[lenghtOfCardsToAdd];
-            for (int i = 0; i < lenghtOfCardsToAdd / 2; i++) {
-                cardsToAdd[2 * i] = i;
-                cardsToAdd[2 * i + 1] = i;
-            }
-            randomizeCardArray(cardsToAdd);
-            for (int i = 0; i < cardsToAdd.length; i++) {
-                arrayOfCards[i] = new SwingViewOfCards(cardIcon[cardsToAdd[i]], backIcon, i, controller);
-                this.panel.add(arrayOfCards[i]);
-            }
+    private void startTimer() {
+        timeLabel = new Label();
+        timeLabel.setFont(Font.font("Cooper Black", 20));
+        timeLabel.setText("Time Passed: " + seconds.toString());
+        timer = new Timeline();
+        timer.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
+            seconds++;
+            timeLabel.setText("Time Passed: " + seconds.toString());
+        });
+        timer.getKeyFrames().add(frame);
+        timer.playFromStart();
+    }
+
+    public void increaseLevelNumber() {
+        levelNumber++;
+        levelLabel.setFont(Font.font("Cooper Black", 20));
+        levelLabel.setText("Level: " + levelNumber.toString());
+    }
+
+    public boolean isGameEnded()
+    {
+        if (levelNumber == 6) {
+            m.setGameEndingTime(seconds);
+            m.addToHighScores();
+            return true;
         } else {
-            for (int i = 0; i < arrayOfCards.length; i++) {
-                this.mainConteinerPane.remove(arrayOfCards[i]);
-                if (model.getCard(i).isFaceUp()) {
-                    arrayOfCards[i].setIcon(arrayOfCards[i].getFaceIcon());
-                    arrayOfCards[i].setFaceUp(true);
-                } else {
-                    arrayOfCards[i].setIcon(backIcon);
-                    arrayOfCards[i].setFaceUp(false);
-                }
-                this.panel.add(arrayOfCards[i]);
+            return false;
+        }
+    }
+
+    private void setLevelDifficulty() {
+        levelDifficultyLabel.setFont(Font.font("Cooper Black", 20));
+        String levelDifficulty =  m.getLevelDifficulty();
+        levelDifficultyLabel.setText("Level Difficulty: " + levelDifficulty);
+        switch (levelDifficulty) {
+            case "easy": {
+                numOfCouples = 4;
+                break;
             }
+            case "medium": {
+                numOfCouples = 5;
+                break;
+            }
+            case "hard": {
+                numOfCouples = 6;
+                break;
+            }
+            default:
+                throw new IllegalStateException("Unexpected value: " + levelDifficulty);
         }
-
-        this.mainConteinerPane.add(panel);
-    }
-
-    public void update() {
-        this.makeCards(false);
-    }
-
-    private void randomizeCardArray(int[] arr) {
-        Random randomizer = new Random();
-        for (int i = 0; i < arr.length; i++) {
-            int d = randomizer.nextInt(arr.length);
-            int s = arr[d];
-            arr[d] = arr[i];
-            arr[i] = s;
-        }
-    }
-
-    private void newMenuItem(String string, JMenu menu, CardController listener) {
-        JMenuItem newItem = new JMenuItem(string);
-        newItem.setActionCommand(string);
-        newItem.addActionListener(listener);
-        menu.add(newItem);
-    }
-
-    public void newGame() {
-        this.mainConteinerPane.removeAll();
-        //make new cardSet visible
-        this.makeCards(true);
-        this.mainConteinerPane.add(panel);
-        //show main window
-        this.mainFrame.setVisible(true);
-    }
-
-    private void drawCardArray() {
-        for (int i = 0; i < this.arrayOfCards.length; i++) {
-            this.panel.add(arrayOfCards[i]);
-        }
-    }
-
-    public int getNumOfCardsByCoord(int x, int y) {
-        int line = y / arrayOfCards[0].getFaceIcon().getIconHeight();
-        int columns = x / arrayOfCards[0].getFaceIcon().getIconWidth();
-        if ((line < 3)) {
-            return (line - 1) * 4 + columns;
-        } else {
-            return (line - 2) * 4 + columns;
-        }
-    }
-
-    public boolean equals(@NotNull Card card1, @NotNull Card card2) {
-        int num1 = card1.getNum();
-        int num2 = card2.getNum();
-
-        return arrayOfCards[num1].getFaceIcon().equals(arrayOfCards[num2].getFaceIcon());
     }
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="levelDifficultyPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LevelDifficultyController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LevelDifficultyController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -43,7 +43,7 @@
                 <Insets top="25.0" />
             </VBox.margin>
         </Label>
-        <Button fx:id="easy" mnemonicParsing="false" onAction="#startTheGame" prefHeight="45.0" prefWidth="140.0" text="Easy">
+        <Button mnemonicParsing="false" onAction="#startTheGame" text="Easy">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -51,7 +51,7 @@
                 <Insets top="40.0" />
             </VBox.margin>
         </Button>
-        <Button fx:id="medium" mnemonicParsing="false" onAction="#startTheGame" prefHeight="45.0" prefWidth="140.0" text="Medium">
+        <Button mnemonicParsing="false" onAction="#startTheGame" text="Medium">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -59,7 +59,7 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </Button>
-        <Button fx:id="hard" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Hard">
+        <Button mnemonicParsing="false" onAction="#startTheGame" text="Hard">
             <font>
                 <Font name="System Bold Italic" size="18.0" />
             </font>
@@ -67,7 +67,7 @@
                 <Insets top="30.0" />
             </VBox.margin>
         </Button>
-        <Button id="prevWindowButton" fx:id="prevWindowButton" mnemonicParsing="false" onAction="#pressBack" prefWidth="70.0" text="Back" alignment="BOTTOM_CENTER">
+        <Button id="prevWindowButton" mnemonicParsing="false" onAction="#pressBack" text="Back" alignment="BOTTOM_CENTER">
             <VBox.margin>
                 <Insets top="37" right="130" />
             </VBox.margin>
@@ -75,7 +75,7 @@
                 <Font name="System Bold" size="16.0" />
             </font>
         </Button>
-        <Button id="exitButton" fx:id="exit" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit" alignment="BOTTOM_CENTER">
+        <Button id="exitButton" mnemonicParsing="false" onAction="#pressExit" text="Exit" alignment="BOTTOM_CENTER">
             <VBox.margin>
                 <Insets top="-29" left="130"/>
             </VBox.margin>

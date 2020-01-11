@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.CardModel;
 import Models.MyModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainController {
 
@@ -35,20 +35,19 @@ public class MainController {
     @FXML
     private Button xButton;
 
-
     public void pressStart(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameModeView.fxml"));
-        Scene scene = new Scene(gameModePage);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        Parent playerNamePage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/PlayerNameView.fxml")));
+        Scene scene = new Scene(playerNamePage);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
     }
 
     public void pressHighScores(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent highScoresPage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/HighScoresView.fxml"));
+        Parent highScoresPage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/HighScoresMenuView.fxml")));
         Scene scene = new Scene(highScoresPage);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
     }
 
@@ -58,18 +57,4 @@ public class MainController {
         stage.close();
     }
 
-    public void gameBoard(ActionEvent event) throws IOException{
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent gameBoardPage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameBoardView.fxml"));
-        Scene scene = new Scene(gameBoardPage);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("GameBoard.css").toExternalForm());
-        window.setScene(scene);
-
-        CardModel model = new CardModel(12);
-        CardController controller = new CardController(model);
-        GameBoardController gameBoardController = new GameBoardController(model, controller);
-        model.setView(gameBoardController);
-        controller.setView(gameBoardController);
-        gameBoardController.newGame();
-    }
 }
