@@ -12,8 +12,8 @@ public class Main extends Application {
     Stage window;
     MyModel m;
 
-    public final int screenWidth = 600;
-    public final int screenHeight = 400;
+    public final int screenWidth = 590;
+    public final int screenHeight = 390;
 
     public static void main(String[] args) {
         launch(args);

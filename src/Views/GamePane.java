@@ -15,10 +15,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class GamePane extends GridPane {
@@ -77,8 +77,8 @@ public class GamePane extends GridPane {
         cards = new Card[columnsNumber][rowsNumber];
         cardsPairs = m.getCardsData();
         listOfAllCards = new ArrayList<>();
-        String key = "";
-        String value = "";
+        String key;
+        String value;
         for (Pair<String, String> stringStringPair : cardsPairs) {
             key = stringStringPair.getKey();
             listOfAllCards.add(key);
@@ -182,21 +182,22 @@ public class GamePane extends GridPane {
             l.setTextFill(Color.BLACK);
             l.setFont(Font.font("Aclonica", FontWeight.BOLD, 14));
             l.setTextAlignment(TextAlignment.CENTER);
-            String text = board[i][j];
-            if (text.contains("(")) {
-                text = text.substring(0, text.indexOf("("));
+            StringBuilder text = new StringBuilder(board[i][j]);
+            if (text.toString().contains("(")) {
+                text = new StringBuilder(text.substring(0, text.indexOf("(")));
             }
-            if (text.contains("[")) {
-                text = text.substring(0, text.indexOf("["));
+            if (text.toString().contains("[")) {
+                text = new StringBuilder(text.substring(0, text.indexOf("[")));
             }
-            String[] words = text.split(" ");
+            String[] words = text.toString().split(" ");
             if (words.length > 3) {
-                text = words[0] + " " + words[1] + " " + words[2] + "\n";
+                text = new StringBuilder(words[0] + " " + words[1] + " " + words[2] + "\n");
                 for(int k = 3; k < words.length; k++) {
-                    text +=  words[k] +=  " ";
+                    text.append(words[k]);
+                    text.append(" ");
                 }
             }
-            l.setText(text);
+            l.setText(text.toString());
             h.getChildren().addAll(l);
             this.getChildren().add(h);
             h.setAlignment(Pos.CENTER);
@@ -230,9 +231,9 @@ public class GamePane extends GridPane {
                         if (isLevelEnded()) {
                             gameBoardController.increaseLevelNumber();
                             if (isGameEnded()) {
-                                Parent highScoresPage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/WinningView.fxml"));
+                                Parent highScoresPage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/WinningView.fxml")));
                                 Scene scene = new Scene(highScoresPage);
-                                scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+                                scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
                                 gameWindow.setScene(scene);
                             }
                             for (int i = 0; i < board.length; i++) {
@@ -256,10 +257,10 @@ public class GamePane extends GridPane {
 
         private boolean match(int i1, int j1, int i2, int j2) {
             for (Pair<String, String> stringStringPair : cardsPairs) {
-                if (stringStringPair.getKey().intern() == board[i1][j1].intern() &&
-                        stringStringPair.getValue().intern() == board[i2][j2].intern() ||
-                        stringStringPair.getKey().intern() == board[i2][j2].intern() &&
-                                stringStringPair.getValue().intern() == board[i1][j1].intern()) {
+                if (stringStringPair.getKey().intern().equals(board[i1][j1].intern()) &&
+                        stringStringPair.getValue().intern().equals(board[i2][j2].intern()) ||
+                        stringStringPair.getKey().intern().equals(board[i2][j2].intern()) &&
+                                stringStringPair.getValue().intern().equals(board[i1][j1].intern())) {
                     return true;
                 }
             }

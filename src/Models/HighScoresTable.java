@@ -11,10 +11,10 @@ import java.util.List;
 public class HighScoresTable {
 
     private static HighScoresTable instance = null;
-    private static String easyTable = "EasyModeHighScores.txt";
-    private static String mediumTable = "MediumModeHighScores.txt";
-    private static String hardTable = "HardModeHighScores.txt";
-    private static String tableType;
+    private String easyTable = "EasyModeHighScores.txt";
+    private String mediumTable = "MediumModeHighScores.txt";
+    private String hardTable = "HardModeHighScores.txt";
+    private String tableType;
 
 
     public static HighScoresTable getInstance() {
@@ -25,14 +25,21 @@ public class HighScoresTable {
     }
 
     /**
-     * set the high scores table type
-     * @param type- level difficulty (easy, medium or hard)
+     * constructor
      */
-    public static void setHighScoresType(String type) {
+    private HighScoresTable() {
+
+    }
+
+        /**
+         * set the high scores table type
+         * @param type- level difficulty (easy, medium or hard)
+         */
+    public void setHighScoresType(String type) {
         tableType = type;
     }
 
-    public static List<Player> loadHighScores() {
+    public List<Player> loadHighScores() {
         List<Player> highScores = new ArrayList<>();
         switch (tableType) {
             case "easy": {
@@ -71,7 +78,7 @@ public class HighScoresTable {
         }
     }
 
-    public static void addToHighScores(String playerName, String gameEndingTime) {
+    public void addToHighScores(String playerName, String gameEndingTime) {
         String levelDifficulty = MyModel.getInstance().getLevelDifficulty();
         setHighScoresType(levelDifficulty);
         List<Player> highScores = loadHighScores();

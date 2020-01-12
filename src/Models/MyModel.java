@@ -380,7 +380,8 @@ public class MyModel implements Model {
      * @param type- level difficulty (easy, medium or hard)
      */
     public void setHighScoresType(String type) {
-        HighScoresTable.setHighScoresType(type);
+        HighScoresTable highScoresTable = HighScoresTable.getInstance();
+        highScoresTable.setHighScoresType(type);
     }
 
     /**
@@ -492,8 +493,8 @@ public class MyModel implements Model {
     }
 
     public List<Player> getHighScores() {
-        HighScoresTable.getInstance();
-        return HighScoresTable.loadHighScores();
+        HighScoresTable highScoresTable = HighScoresTable.getInstance();
+        return highScoresTable.loadHighScores();
     }
 
     public void setGameEndingTime(Integer endingTime) {
@@ -502,7 +503,7 @@ public class MyModel implements Model {
 
     public void addToHighScores() {
         String playerName = playerName1;
-        HighScoresTable.getInstance();
-        HighScoresTable.addToHighScores(playerName, gameEndingTime);
+        HighScoresTable highScoresTable = HighScoresTable.getInstance();
+        highScoresTable.addToHighScores(playerName, gameEndingTime);
     }
 }
