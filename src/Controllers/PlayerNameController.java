@@ -16,13 +16,15 @@ import java.util.Objects;
 
 public class PlayerNameController {
 
+    public Button continueButton1;
+
     private MyModel m;
 
     @FXML
     private TextField playerName;
 
     @FXML
-    private GridPane PlayerName;
+    private GridPane PlayerNamePane;
 
     @FXML
     private Button exitButton;
@@ -33,26 +35,25 @@ public class PlayerNameController {
     @FXML
     private Button backButton;
 
-    private String name;
 
 
     public void enterYourName(ActionEvent event)throws IOException{
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameModeView.fxml"));
+        Parent gameModePage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/GameModeView.fxml")));
         Scene scene = new Scene(gameModePage);
         playerName.setText("Enter your Name");
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
         window.show();
     }
 
     public void pressContinue(ActionEvent event) throws IOException{
         m = MyModel.getInstance();
-        m.setPlayerName(name);
+        m.setPlayerName(playerName.getText());
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/GameModeView.fxml"));
+        Parent gameModePage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/GameModeView.fxml")));
         Scene scene = new Scene(gameModePage);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
     }
 

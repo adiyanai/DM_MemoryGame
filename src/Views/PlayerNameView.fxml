@@ -1,103 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane fx:id="PlayerName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PlayerNameController">
-    <children>
-        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
-            <children>
-                <Label text="Enter Your Name:" textAlignment="JUSTIFY">
-                    <font>
-                        <Font name="System Bold" size="50.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets top="5.0" />
-                    </VBox.margin>
-                    <textFill>
-                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                            <stops>
-                                <Stop>
-                                    <color>
-                                        <Color blue="0.7" green="0.5" red="0.2" />
-                                    </color>
-                                </Stop>
-                                <Stop offset="0.3635731465021431">
-                                    <color>
-                                        <Color blue="0.65" green="0.5" red="0.15" />
-                                    </color>
-                                </Stop>
-                                <Stop offset="0.9">
-                                    <color>
-                                        <Color blue="0.1" green="0.9599999785423279" red="0.9599999785423279" />
-                                    </color>
-                                </Stop>
-                            </stops>
-                        </RadialGradient>
-                    </textFill>
-                    <padding>
-                        <Insets top="-30.0" />
-                    </padding>
-                </Label>
-                <TextField id="playerName" fx:id="playerName" layoutX="190.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#enterYourName" prefHeight="39.0" prefWidth="184.0" promptText="Enter your name..." VBox.vgrow="SOMETIMES">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <rotationAxis>
-                        <Point3D y="1.0" z="1.0" />
-                    </rotationAxis></TextField>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Button fx:id="continueButton" maxHeight="-Infinity" mnemonicParsing="false" onAction="#pressBack" prefHeight="37.0" prefWidth="93.0" text="Back">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="100.0" right="30.0" top="-45.0" />
-                            </HBox.margin>
-                        </Button>
-                        <Button fx:id="exitButton" alignment="CENTER" maxHeight="-Infinity" mnemonicParsing="false" onAction="#pressContinue" prefHeight="37.0" prefWidth="93.0" text="Continue">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="40.0" top="-45.0" />
-                            </HBox.margin>
-                        </Button>
-                        <Button fx:id="continueButton1" layoutX="200.0" layoutY="-35.0" maxHeight="-Infinity" mnemonicParsing="false" onAction="#pressExit" prefHeight="37.0" prefWidth="93.0" text="Exit">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="60.0" top="-45.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="200.0" />
-                    </VBox.margin>
-                </HBox>
-            </children>
-            <GridPane.margin>
-                <Insets bottom="-120.0" />
-            </GridPane.margin></VBox>
-    </children>
+<GridPane fx:id="PlayerNamePane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PlayerNameController">
     <columnConstraints>
-        <ColumnConstraints />
+        <ColumnConstraints/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
+        <RowConstraints/>
     </rowConstraints>
+    <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
+        <GridPane.margin>
+            <Insets bottom="-120.0"/>
+        </GridPane.margin>
+        <Label text="Enter Your Name:" textAlignment="JUSTIFY">
+            <font>
+                <Font name="System Bold" size="50.0"/>
+            </font>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+            <padding>
+                <Insets top="-30.0"/>
+            </padding>
+            <textFill>
+                <RadialGradient centerX="0.4777777777777778" centerY="0.5" radius="0.5">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.20000000298023224" green="0.5" blue="0.699999988079071"/>
+                            </color>
+                        </Stop>
+                        <Stop offset="0.3635731465021431">
+                            <color>
+                                <Color red="0.15000000596046448" green="0.5" blue="0.6499999761581421"/>
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8762886597938144">
+                            <color>
+                                <Color red="0.949999988079071" green="0.949999988079071"
+                                       blue="0.10450000315904617"/>
+                            </color>
+                        </Stop>
+                        <Stop offset="0.9">
+                            <color>
+                                <Color red="0.9599999785423279" green="0.9599999785423279"
+                                       blue="0.10000000149011612"/>
+                            </color>
+                        </Stop>
+                        <Stop offset="0.9450171821305843">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="0.07870370149612427"/>
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.8947368264198303" green="0.8947368264198303"
+                                       blue="0.15740740299224854"/>
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </textFill>
+        </Label>
+        <TextField id="playerName" fx:id="playerName" layoutX="190.0" layoutY="120.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#enterYourName"
+                   prefHeight="39.0" prefWidth="184.0" promptText="Enter your name..." VBox.vgrow="SOMETIMES">
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+            <rotationAxis>
+                <Point3D y="1.0" z="1.0"/>
+            </rotationAxis>
+        </TextField>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox.margin>
+                <Insets top="200.0"/>
+            </VBox.margin>
+            <Button fx:id="continueButton" maxHeight="-Infinity" mnemonicParsing="false" onAction="#pressBack"
+                    prefHeight="37.0" prefWidth="93.0" text="Back">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+                <HBox.margin>
+                    <Insets left="100.0" right="30.0" top="-45.0"/>
+                </HBox.margin>
+            </Button>
+            <Button fx:id="exitButton" alignment="CENTER" maxHeight="-Infinity" mnemonicParsing="false"
+                    onAction="#pressContinue" prefHeight="37.0" prefWidth="93.0" text="Continue">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+                <HBox.margin>
+                    <Insets left="40.0" top="-45.0"/>
+                </HBox.margin>
+            </Button>
+            <Button fx:id="continueButton1" layoutX="200.0" layoutY="-35.0" maxHeight="-Infinity"
+                    mnemonicParsing="false" onAction="#pressExit" prefHeight="37.0" prefWidth="93.0"
+                    text="Exit">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+                <HBox.margin>
+                    <Insets left="60.0" top="-45.0"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </VBox>
 </GridPane>

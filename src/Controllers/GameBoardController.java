@@ -1,9 +1,5 @@
 package Controllers;
 import Views.GamePane;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.util.Pair;
 import Models.MyModel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,9 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.animation.*;
 import javafx.util.Duration;
-
-import java.io.IOException;
-import java.util.*;
 
 public class GameBoardController {
 
@@ -79,6 +72,7 @@ public class GameBoardController {
         if (levelNumber == 6) {
             m.setGameEndingTime(seconds);
             m.addToHighScores();
+            levelNumber = 0;
             return true;
         } else {
             return false;

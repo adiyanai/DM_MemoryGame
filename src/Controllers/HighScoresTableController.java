@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,12 +26,16 @@ import java.util.ResourceBundle;
 
 public class HighScoresTableController implements Initializable {
 
+    public Button exit;
+
+    public GridPane highScoresPage;
+
     private MyModel m;
 
     private List<Player> highScores = null;
 
     @FXML
-    private Button prevWindowButton;
+    Button prevWindowButton;
 
     @FXML
     TableView<Player> highScoresTable;

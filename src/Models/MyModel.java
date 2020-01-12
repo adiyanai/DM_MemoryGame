@@ -380,7 +380,7 @@ public class MyModel implements Model {
      * @param type- level difficulty (easy, medium or hard)
      */
     public void setHighScoresType(String type) {
-        HighScoresTable.getInstance().setHighScoresType(type);
+        HighScoresTable.setHighScoresType(type);
     }
 
     /**
@@ -402,7 +402,7 @@ public class MyModel implements Model {
     public void connect() {
         try {
             final String user = "root";
-            final String password = "318506615";
+            final String password = "123456";
             this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();

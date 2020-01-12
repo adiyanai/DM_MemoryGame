@@ -1,9 +1,10 @@
 package Models;
 
+import java.io.*;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class HighScoresTable {
      * set the high scores table type
      * @param type- level difficulty (easy, medium or hard)
      */
-    public void setHighScoresType(String type) {
+    public static void setHighScoresType(String type) {
         tableType = type;
     }
 
@@ -51,8 +52,10 @@ public class HighScoresTable {
         }
 
         try {
-            URL path = HighScoresTable.class.getResource(tableType);
-            File f = new File(path.getFile());
+            File f = new File(tableType);
+            if(!f.exists()) {
+                boolean b = f.createNewFile();
+                return highScores; }
             BufferedReader reader = new BufferedReader(new FileReader(f));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -68,25 +71,34 @@ public class HighScoresTable {
         }
     }
 
-    //TODO: implementation
     public static void addToHighScores(String playerName, String gameEndingTime) {
         String levelDifficulty = MyModel.getInstance().getLevelDifficulty();
-        String fileName = "";
-        switch (levelDifficulty) {
-            case "easy": {
-                fileName = easyTable;
-                break;
+        setHighScoresType(levelDifficulty);
+        List<Player> highScores = loadHighScores();
+        if (highScores!=null) {
+            try {
+                File f = new File(tableType);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+                Player p = new Player(playerName, gameEndingTime);
+                highScores.add(p);
+                highScores.sort(Comparator.comparingInt(object -> Integer.parseInt(object.getTime())));
+                int stop = 5;
+                for(int i=0; i< highScores.size() ; i++) {
+                    if (i == stop) {
+                        break;
+                    }
+                    StringJoiner sj = new StringJoiner(",");
+                    sj.add(highScores.get(i).getName());
+                    sj.add(highScores.get(i).getTime());
+                    writer.write(sj.toString());
+                    writer.newLine();
+                }
+                writer.close();
             }
-            case "medium": {
-                fileName = mediumTable;
-                break;
+            catch (Exception e) {
+                System.out.println("failed");
             }
-            case "hard": {
-                fileName = hardTable;
-                break;
-            }
-            default:
-                throw new IllegalStateException("Unexpected value: " + tableType);
         }
+
     }
 }
