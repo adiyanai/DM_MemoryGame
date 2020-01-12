@@ -58,7 +58,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -71,7 +71,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct Artists_info.ArtistName,Title From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -89,7 +89,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -102,7 +102,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct Title, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -121,7 +121,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -134,7 +134,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct Artists_info.ArtistName, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -157,7 +157,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -170,7 +170,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct Artists_info.ArtistName, Title From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -189,7 +189,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -202,7 +202,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct  Title, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -221,7 +221,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -234,7 +234,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct  Artists_info.ArtistName, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -258,7 +258,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -271,7 +271,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct  Artists_info.ArtistName, Title From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -289,7 +289,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -302,7 +302,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct Title, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -321,7 +321,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName),\n" +
+                "Group By AR.ArtistID),\n" +
                 "\n" +
                 "Artists_info2 As(\n" +
                 "Select \n" +
@@ -334,7 +334,7 @@ public class MyModel implements Model {
                 "On AA.AlbumID=AL.AlbumID\n" +
                 "Inner join songs S\n" +
                 "On AL.AlbumID=S.AlbumID\n" +
-                "Group By AR.ArtistID,ArtistName)\n" +
+                "Group By AR.ArtistID)\n" +
                 "\n" +
                 "Select distinct  Artists_info.ArtistName, AlbumName From Artists_info inner join Artists_info2\n" +
                 "on Artists_info.ArtistID = Artists_info2.ArtistID\n" +
@@ -403,7 +403,7 @@ public class MyModel implements Model {
     public void connect() {
         try {
             final String user = "root";
-            final String password = "123456";
+            final String password = "318506615";
             this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();
