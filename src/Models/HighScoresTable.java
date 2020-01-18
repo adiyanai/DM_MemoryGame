@@ -77,7 +77,6 @@ public class HighScoresTable {
             return null;
         }
     }
-
     public void addToHighScores(String playerName, String gameEndingTime) {
         String levelDifficulty = MyModel.getInstance().getLevelDifficulty();
         setHighScoresType(levelDifficulty);
