@@ -70,7 +70,7 @@ public class HighScoresTableController implements Initializable {
 
     public void pressBack(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Parent mainView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/MainView.fxml")));
+        Parent mainView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/HighScoresMenuView.fxml")));
         Scene scene = new Scene(mainView);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("StyleSheet.css")).toExternalForm());
         window.setScene(scene);
