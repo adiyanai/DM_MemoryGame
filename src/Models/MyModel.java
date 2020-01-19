@@ -138,7 +138,7 @@ public class MyModel implements Model {
                 "Group By AR.ArtistID)\n"+
                 "\n" +
                 "Select distinct  Title, AlbumName From Artists_info\n" +
-                "Where (Average_Years < 2002 or Count_songs < 3) and length(Title)<20" +
+                "Where (Average_Years < 2002 or Count_songs < 3) and length(Title)<20 and length(AlbumName)<20" +
                 " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 5;";
         // artist - album
@@ -279,7 +279,7 @@ public class MyModel implements Model {
     public void connect() {
         try {
             final String user = "root";
-            final String password = "318506615";
+            final String password = "ay28ed99";
             this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();
