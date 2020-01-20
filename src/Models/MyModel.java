@@ -278,9 +278,10 @@ public class MyModel implements Model {
      */
     public void connect() {
         try {
-            final String user = "root";
-            final String password = "ay28ed99";
-            this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/millionsong?allowPublicKeyRetrieval=true&useSSL=false", user, password);
+            final String user = "team02";
+            final String password = "dbms5";
+            final String scheme = "db02";
+            this.myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+scheme+"?allowPublicKeyRetrieval=true&useSSL=false", user, password);
             // create statement to execute queries
             this.stmt = this.myConn.createStatement();
         } catch(Exception e) {
