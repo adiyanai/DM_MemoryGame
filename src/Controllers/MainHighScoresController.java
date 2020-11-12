@@ -11,15 +11,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-// MainHighScoresController is in charge of the screen of the high scores that can be reached from the main menu.
+// MainHighScoresController is in charge of the screen of the high scores menu.
 public class MainHighScoresController {
 
     private MyModel m;
 
+    // Open the screen of the highscores table of the selected level difficulty.
     public void highScoresPage(ActionEvent event) throws IOException {
         m = MyModel.getInstance();
-        String mode = ((Button)event.getSource()).getId();
-        m.setHighScoresType(mode);
+        String difficulty = ((Button)event.getSource()).getId();
+        m.setHighScoresType(difficulty);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         Parent gameModePage = FXMLLoader.load(getClass().getClassLoader().getResource("Views/HighScoresTableView.fxml"));
         Scene scene = new Scene(gameModePage);

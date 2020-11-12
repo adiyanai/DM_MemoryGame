@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-// HighScoresTableController is in charge of the screen of the high scores that can be shown at the end of the game.
+// HighScoresTableController is in charge of the screen of the high scores.
 public class HighScoresTableController implements Initializable {
 
     public Button exit;
