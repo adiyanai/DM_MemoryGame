@@ -39,3 +39,26 @@ After selecting the difficulty level, the user will be able to start the game an
 For a better user experience, the application will maintain a high scores table for each difficulty level separately, at which will appear the five best players.<br />
 From the moment the cards appear on the board, a time counter will appear and will count the time it took the player to play.<br />
 At the end of all the levels, if the player enters the five players who finished in the shortest time, he will be entered into the list of the high scores.<br />
+
+### Game screens
+
+![main](https://user-images.githubusercontent.com/45918740/98940538-c96dc800-24f3-11eb-98c0-d14bbecd6078.JPG)<br /><br /><br />
+
+![name](https://user-images.githubusercontent.com/45918740/98940798-32edd680-24f4-11eb-9051-2cf14c0a4dce.JPG)<br /><br /><br />
+
+![mode](https://user-images.githubusercontent.com/45918740/98940873-56b11c80-24f4-11eb-8cb7-9cf94181a70c.JPG)<br /><br /><br />
+
+![difficulty](https://user-images.githubusercontent.com/45918740/98940924-71839100-24f4-11eb-997c-7a5cc50e01c8.JPG)<br /><br /><br />
+
+![game1](https://user-images.githubusercontent.com/45918740/98940955-8102da00-24f4-11eb-8f0a-7d1ba14aad3f.JPG)<br /><br /><br />
+
+![game2](https://user-images.githubusercontent.com/45918740/98941015-9aa42180-24f4-11eb-82ea-76232c625638.JPG)<br /><br /><br />
+
+In case of selecting High Scores from the main menu:
+![hige scores type](https://user-images.githubusercontent.com/45918740/98940991-911ab980-24f4-11eb-981c-a8ad0126f490.JPG)<br /><br /><br />
+
+![hige scores](https://user-images.githubusercontent.com/45918740/98941136-ca532980-24f4-11eb-9b75-9ed03dd93e1d.JPG)
+
+
+
+
