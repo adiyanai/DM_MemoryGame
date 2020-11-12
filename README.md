@@ -54,7 +54,7 @@ At the end of all the levels, if the player enters the five players who finished
 
 ![game2](https://user-images.githubusercontent.com/45918740/98941015-9aa42180-24f4-11eb-82ea-76232c625638.JPG)<br /><br /><br />
 
-In case of selecting High Scores from the main menu:
+In case of selecting High Scores from the main menu: <br />
 ![hige scores type](https://user-images.githubusercontent.com/45918740/98940991-911ab980-24f4-11eb-981c-a8ad0126f490.JPG)<br /><br /><br />
 
 ![hige scores](https://user-images.githubusercontent.com/45918740/98941136-ca532980-24f4-11eb-9b75-9ed03dd93e1d.JPG)
