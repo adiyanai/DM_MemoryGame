@@ -82,7 +82,7 @@
       </Button>
       <Button id="scoreButton" fx:id="highScoresButton" mnemonicParsing="false" onAction="#pressHighScores" prefWidth="130.0" text="High Scores">
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="30.0" />
          </VBox.margin>
          <font>
             <Font name="System Bold" size="18.0" />
@@ -90,7 +90,7 @@
       </Button>
       <Button fx:id="exitButton" mnemonicParsing="false" onAction="#pressExit" prefWidth="70.0" text="Exit">
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="30.0" />
          </VBox.margin>
          <font>
             <Font name="System Bold" size="16.0" />

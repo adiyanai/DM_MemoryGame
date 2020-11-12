@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * LevelDifficultyController is in charge of the screen that asks the user to choose the difficulty according to which
+ * the game board will be built.
+ */
 public class LevelDifficultyController {
 
     private MyModel m;

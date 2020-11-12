@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.Objects;
 
+// PlayerNameController is in charge of the screen that asks the user to enter his name.
 public class PlayerNameController {
 
     public Button continueButton1;
@@ -34,7 +35,6 @@ public class PlayerNameController {
 
     @FXML
     private Button backButton;
-
 
 
     public void enterYourName(ActionEvent event)throws IOException{

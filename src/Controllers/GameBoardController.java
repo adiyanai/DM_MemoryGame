@@ -11,8 +11,8 @@ import javafx.scene.text.*;
 import javafx.animation.*;
 import javafx.util.Duration;
 
+// GameBoardController is in charge of the board on which the game cards appear.
 public class GameBoardController {
-
     private BorderPane pane = new BorderPane();
     private MyModel m;
     private Button btStop = new Button("Stop");
@@ -38,6 +38,7 @@ public class GameBoardController {
         runTheGame(window, infoBox);
     }
 
+    // Start running the game.
     private void runTheGame(Stage window, HBox infoBox) {
         GamePane gamePane = new GamePane(this, pane, numOfCouples, window);
         pane.setTop(infoBox);
@@ -47,6 +48,7 @@ public class GameBoardController {
         window.show();
     }
 
+    // Start running the time counter.
     private void startTimer() {
         timeLabel = new Label();
         timeLabel.setFont(Font.font("Cooper Black", 20));
@@ -61,12 +63,17 @@ public class GameBoardController {
         timer.playFromStart();
     }
 
+    // Increase the number of the current level by 1.
     public void increaseLevelNumber() {
         levelNumber++;
         levelLabel.setFont(Font.font("Cooper Black", 20));
         levelLabel.setText("Level: " + levelNumber.toString());
     }
 
+    /**
+     * Check whether the game ended - if yes - perform the operations of the ending of the game.
+     * Return true if the game ended, false otherwise.
+     */
     public boolean isGameEnded()
     {
         if (levelNumber == 6) {
@@ -79,6 +86,7 @@ public class GameBoardController {
         }
     }
 
+    // Set the difficulty of the current level.
     private void setLevelDifficulty() {
         levelDifficultyLabel.setFont(Font.font("Cooper Black", 20));
         String levelDifficulty =  m.getLevelDifficulty();

@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// WinningController is in charge of the winning screen.
 public class WinningController {
 
     public void pressHighScores(ActionEvent event) throws IOException {

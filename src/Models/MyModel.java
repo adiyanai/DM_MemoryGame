@@ -26,14 +26,14 @@ public class MyModel implements Model {
     }
 
     /**
-     * constructor
+     * Constructor
      */
     private MyModel() {
-        // queries for the easy levels
+        // Queries for the easy levels.
         this.easyQueries = new ArrayList<>();
-        // queries for the medium levels
+        // Queries for the medium levels.
         this.mediumQueries = new ArrayList<>();
-        // queries for the hard levels
+        // Queries for the hard levels.
         this.hardQueries = new ArrayList<>();
         this.levelDifficulty = "easy";
         this.levelMode = 0;
@@ -42,10 +42,11 @@ public class MyModel implements Model {
     }
 
     /**
-     * initialize queries to all the levels types (easy, medium, hard)
+     * Initialize queries for all types of difficulty levels (easy, medium, hard).
      */
     public void initializeQueries() {
-        // create queries for the easy levels: (4 pairs)
+        // Create queries for the easy levels: (4 pairs)
+
         // artist - song
         String easyArtistSongQueries =  "With Artists_info As(\n"+
                 "Select\n"+
@@ -82,6 +83,7 @@ public class MyModel implements Model {
                 "Where (Average_Years > 2004 or Count_songs >=4) and length(Title)<20 and length(AlbumName)<20" +
                 " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 4;";
+
         // artist - album
         String easyArtistAlbumQueries = "With Artists_info As(\n"+
                 "Select\n"+
@@ -100,11 +102,13 @@ public class MyModel implements Model {
                 "Where (Average_Years > 2004 or Count_songs>= 4) and length(Artists_info.ArtistName)<20 " +
                 "and length(AlbumName)<20\n" +
                 "ORDER BY RAND() LIMIT 4;";
+
         this.easyQueries.add(easyArtistSongQueries);
         this.easyQueries.add(easySongAlbumQueries);
         this.easyQueries.add(easyArtistAlbumQueries);
 
-        // create queries for the medium levels: (5 pairs)
+        // Create queries for the medium levels: (5 pairs)
+
         // artist - song
         String mediumArtistSongQueries ="With Artists_info As(\n"+
                 "Select\n"+
@@ -123,6 +127,7 @@ public class MyModel implements Model {
                 "Where (Average_Years < 2002 or Count_songs < 3) " +
                 "and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
                 "ORDER BY RAND() LIMIT 5;";
+
         // song - album
         String mediumSongAlbumQueries ="With Artists_info As(\n"+
                 "Select\n"+
@@ -141,6 +146,7 @@ public class MyModel implements Model {
                 "Where (Average_Years < 2002 or Count_songs < 3) and length(Title)<20 and length(AlbumName)<20" +
                 " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 5;";
+
         // artist - album
         String mediumArtistAlbumQueries = "With Artists_info As(\n"+
                 "Select\n"+
@@ -162,8 +168,8 @@ public class MyModel implements Model {
         this.mediumQueries.add(mediumSongAlbumQueries);
         this.mediumQueries.add(mediumArtistAlbumQueries);
 
+        // Create queries for the hard levels: (6 pairs)
 
-        // create queries for the hard levels: (6 pairs)
         // artist - song
         String hardArtistSongQueries = "With Artists_info As(\n"+
                 "Select\n"+
@@ -181,6 +187,7 @@ public class MyModel implements Model {
                 "Select distinct ArtistName, Title From Artists_info\n" +
                 "Where (Average_Years < 2000 and Count_songs <= 2) and length(Artists_info.ArtistName)<20 and length(Title)<20\n" +
                 "ORDER BY RAND() LIMIT 6;";
+
         // song - album
         String hardSongAlbumQueries = "With Artists_info As(\n"+
                 "Select\n"+
@@ -199,6 +206,7 @@ public class MyModel implements Model {
                 "Where (Average_Years < 2000 and Count_songs <= 2) and length(Title)<20 and length(AlbumName)<20" +
                 " and Title not LIKE AlbumName\n" +
                 "ORDER BY RAND() LIMIT 6;";
+
         // artist - album
         String hardArtistAlbumQueries = "With Artists_info As(\n"+
                 "Select\n"+
@@ -222,38 +230,38 @@ public class MyModel implements Model {
     }
 
     /**
-     * set the level mode
-     * @param m - level mode (0 = artist - song, 1 = song - album, 2 = artist - album)
+     * Set the level mode.
+     * @param m - level mode (0 = artist - song, 1 = song - album, 2 = artist - album).
      */
     public void setLevelMode(int m) {
         this.levelMode = m;
     }
 
     /**
-     * @return the level mode (0 = artist - song, 1 = song - album, 2 = artist - album)
+     * @return the level mode (0 = artist - song, 1 = song - album, 2 = artist - album).
      */
     public int getLevelMode() {
         return this.levelMode;
     }
 
     /**
-     * set the level difficulty
-     * @param d - level difficulty (easy, medium or hard)
+     * Set the level difficulty.
+     * @param d - level difficulty (easy, medium or hard).
      */
     public void setLevelDifficulty(String d) {
         this.levelDifficulty = d;
     }
 
     /**
-     * @return the level difficulty
+     * @return the level difficulty.
      */
     public String getLevelDifficulty() {
         return this.levelDifficulty;
     }
 
     /**
-     * set the highscores table type
-     * @param type- level difficulty (easy, medium or hard)
+     * Set the highscores table type.
+     * @param type- level difficulty (easy, medium or hard).
      */
     public void setHighScoresType(String type) {
         HighScoresTable highScoresTable = HighScoresTable.getInstance();
@@ -261,20 +269,20 @@ public class MyModel implements Model {
     }
 
     /**
-     * @return the player name
+     * @return the player name.
      */
     public String getPlayerName(){return this.playerName1;}
 
     /**
-     * set the player name
-     * @param name - player name
+     * Set the player name.
+     * @param name - player name.
      */
     public void setPlayerName(String name) {
         this.playerName1 = name;
     }
 
     /**
-     * connect to mySQL
+     * Connect to MySQL.
      */
     public void connect() {
         try {
@@ -290,7 +298,7 @@ public class MyModel implements Model {
     }
 
     /**
-     * close connection
+     * Close the connection.
      */
     public void close() {
         try {
@@ -302,8 +310,8 @@ public class MyModel implements Model {
     }
 
     /**
-     * Create and return pairs of cards of the game
-     * @return pairs of cards of the game
+     * Create and return pairs of cards of the game.
+     * @return pairs of cards of the game.
      */
     public List<Pair<String, String>> getCardsData() {
         List<Pair<String, String>> cards = new ArrayList<>();
@@ -339,10 +347,10 @@ public class MyModel implements Model {
     }
 
     /**
-     * Create and return pair of cards
-     * @param rs - raw in the table
-     * @return pair of cards
-     * @throws SQLException - throw sql exception
+     * Create and return pair of cards.
+     * @param rs - raw in the table.
+     * @return pair of cards.
+     * @throws SQLException - throw SQL exception.
      */
     public Pair<String, String> getPairOfCards(ResultSet rs) throws SQLException {
         Pair<String, String> cardsPair;
@@ -369,15 +377,24 @@ public class MyModel implements Model {
         return cardsPair;
     }
 
+    /**
+     * @return a list of players.
+     */
     public List<Player> getHighScores() {
         HighScoresTable highScoresTable = HighScoresTable.getInstance();
         return highScoresTable.loadHighScores();
     }
 
+    /**
+     * @param endingTime - the ending time of the player.
+     */
     public void setGameEndingTime(Integer endingTime) {
         this.gameEndingTime = endingTime.toString();
     }
 
+    /**
+     *  Add the player to the high scores table in a case he is one of the TOP-5 players.
+     */
     public void addToHighScores() {
         String playerName = playerName1;
         HighScoresTable highScoresTable = HighScoresTable.getInstance();

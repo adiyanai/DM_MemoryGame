@@ -15,11 +15,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+// MainController is in charge of the screen of the main menu.
 public class MainController {
 
     @FXML
     private Pane topPane;
-
 
     @FXML
     private Button highScoresButton;

@@ -11,11 +11,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// MainHighScoresController is in charge of the screen of the high scores that can be reached from the main menu.
 public class MainHighScoresController {
 
     private MyModel m;
 
-    public void highScoresPage (ActionEvent event) throws IOException{
+    public void highScoresPage(ActionEvent event) throws IOException {
         m = MyModel.getInstance();
         String mode = ((Button)event.getSource()).getId();
         m.setHighScoresType(mode);

@@ -11,6 +11,10 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * GameModeController is in charge of the screen that asks the user to choose the musical relation according to which
+ * the game board will be built.
+ */
 public class GameModeController {
 
     private MyModel m;

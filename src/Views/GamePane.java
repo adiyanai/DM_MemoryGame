@@ -42,6 +42,13 @@ public class GamePane extends GridPane {
     private int currentBackCard;
     BorderPane pane;
 
+    /**
+     * Constructor
+     * @param boardController - the controller of the game board.
+     * @param gamePane - a BorderPane object, which is a container that is divided into separate areas.
+     * @param numOfCouples - the number of couples of cards that should be removed.
+     * @param window - a Stage object, which is a container that hosts a Scene.
+     */
     public GamePane(GameBoardController boardController, BorderPane gamePane, int numOfCouples, Stage window) {
         gameBoardController = boardController;
         gameWindow = window;
@@ -68,9 +75,9 @@ public class GamePane extends GridPane {
         }
         rand = new Random();
         setLevelCards();
-
     }
 
+    // Set the cards of the current level.
     private void setLevelCards() {
         finishedCounter = 0;
         board = new String[columnsNumber][rowsNumber];
@@ -103,15 +110,17 @@ public class GamePane extends GridPane {
         }
     }
 
+    // Return true if the level has ended and false otherwise.
     private boolean isLevelEnded() {
         return finishedCounter == numberOfCouples;
     }
 
+    // Return true if the game has ended and false otherwise.
     private boolean isGameEnded() {
         return gameBoardController.isGameEnded();
     }
 
-
+    // Card represents a card of the memory game that can be flipped and flipped back.
     public class Card extends StackPane {
         private boolean flipped;
         private int i;
@@ -123,6 +132,7 @@ public class GamePane extends GridPane {
         public Card(int i, int j, int cardBack) {
             this.i = i;
             this.j = j;
+            // Set the background of the back of the card.
             switch (cardBack){
                 case 0: {
                     imgPath = "/backCard1.png";
@@ -151,6 +161,7 @@ public class GamePane extends GridPane {
             }
             imageView = new ImageView(new Image(imgPath));
             this.setPrefSize(100, 100);
+            // Set the operation occurs in a case of a mouse click on the card.
             this.setOnMouseClicked(e -> {
                 try {
                     handleMouseClick();
@@ -165,11 +176,13 @@ public class GamePane extends GridPane {
             }
         }
 
+        // Set the card to be faced down.
         private void setFaceDown() {
             this.getChildren().clear();
             this.getChildren().add(imageView);
         }
 
+        // Set the card to be faced up.
         private void setFaceUp() {
             HBox h = new HBox();
             if(done) {
@@ -203,6 +216,7 @@ public class GamePane extends GridPane {
             h.setAlignment(Pos.CENTER);
         }
 
+        // The operation occurs in case of a mouse click on a card.
         private void handleMouseClick() throws IOException {
             if (first) {
                 if (!flipped) {
@@ -255,6 +269,13 @@ public class GamePane extends GridPane {
             }
         }
 
+        /**
+         * @param i1 - the row of the first card choice.
+         * @param j1 - the column of the first card choice.
+         * @param i2 - the row of the second card choice.
+         * @param j2 - the column of the second card choice.
+         * @return true if the cards are match, false - otherwise.
+         */
         private boolean match(int i1, int j1, int i2, int j2) {
             for (Pair<String, String> stringStringPair : cardsPairs) {
                 if (stringStringPair.getKey().intern().equals(board[i1][j1].intern()) &&
@@ -267,10 +288,16 @@ public class GamePane extends GridPane {
             return false;
         }
 
+        /**
+         * @return the row of the current card choice.
+         */
         public int getI() {
             return i;
         }
 
+        /**
+         * @return the column of the current card choice.
+         */
         public int getJ() {
             return j;
         }

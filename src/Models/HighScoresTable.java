@@ -25,16 +25,16 @@ public class HighScoresTable {
     }
 
     /**
-     * constructor
+     * Constructor.
      */
     private HighScoresTable() {
 
     }
 
-        /**
-         * set the high scores table type
-         * @param type- level difficulty (easy, medium or hard)
-         */
+    /**
+     * set the high scores table type
+     * @param type- level difficulty (easy, medium or hard)
+     */
     public void setHighScoresType(String type) {
         tableType = type;
     }
