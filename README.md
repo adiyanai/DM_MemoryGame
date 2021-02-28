@@ -14,7 +14,7 @@ managing the high scores tables, etc.<br />
 We used the [Million Song Dataset](http://millionsongdataset.com/). When we downloaded the data, it came in H5 files, and hence we used a Python script which turned this data into a [CSV file](https://github.com/adiyanai/DM_MemoryGame/blob/master/SongCSV.csv). The CSV file we extracted contains one large table of 10,000 songs so that each record contains information about one song.<br />
 From this table we took the data needed to create the following tables: <br />
 [artists](https://github.com/adiyanai/DM_MemoryGame/blob/master/artists.csv), [songs](https://github.com/adiyanai/DM_MemoryGame/blob/master/songs.csv),
-[songs](https://github.com/adiyanai/DM_MemoryGame/blob/master/songs.csv), [albums](https://github.com/adiyanai/DM_MemoryGame/blob/master/albums.csv), and the linking table [albums_artists](https://github.com/adiyanai/DM_MemoryGame/blob/master/albums_artists.csv) that links the Albums table to the Artists table.<br />
+[albums](https://github.com/adiyanai/DM_MemoryGame/blob/master/albums.csv), and the linking table [albums_artists](https://github.com/adiyanai/DM_MemoryGame/blob/master/albums_artists.csv) that links the Albums table to the Artists table.<br />
 
 ### About the game
 The target audience of the application is game & music lovers.<br />
